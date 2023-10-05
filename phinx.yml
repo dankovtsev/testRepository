@@ -1,0 +1,15 @@
+paths:
+  migrations: "%%PHINX_CONFIG_DIR%%/db/migrations"
+  seeds: "%%PHINX_CONFIG_DIR%%/db/seeds"
+
+environments:
+  default_migration_table: migration
+  default_database: development
+  development:
+    adapter: mariadb
+    host: "mariadb"
+    name: "Test"
+    user: "root"
+    pass: "rootsecret"
+    port: 33069
+    charset: utf8
