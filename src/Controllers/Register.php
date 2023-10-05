@@ -1,17 +1,17 @@
 <?php
 
+use App\Config\DataBaseConnect;
+
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-
+require_once '../../vendor/autoload.php';
 // Подключение к базе данных
-require_once 'db_conf.php';
-$servername = getenv('MYSQL_HOST');//"localhost";
-$username = getenv('MYSQL_ROOT_USER');//"root";
-$password = getenv('MYSQL_ROOT_PASSWORD');//"rootsecret";
-$dbname = getenv('MYSQL_DATABASE');//"test";
 
-$conn = new mysqli($servername, $username, $password, $dbname);
+$databaseConnection = DataBaseConnect::getInstance();
+$conn = $databaseConnection->getConnection();
+
+
 if ($conn->connect_error) {
     die("Ошибка подключения к базе данных: " . $conn->connect_error);
 }
@@ -23,10 +23,7 @@ if (isset($_POST['name'])) {
     $email = $_POST['email'];
     $password = $_POST['password'];
     $confirmPassword = $_POST['password-2'];
-echo '<pre>';
-print_r(1231231);
-echo '</pre>';
-die;
+
     // Проверяем, совпадают ли пароли
     if ($password != $confirmPassword) {
         echo "Пароли не совпадают!";
@@ -52,14 +49,14 @@ die;
     }
 
 
-    $submittedPassword = "Введенный_пароль";
+    /*$submittedPassword = "Введенный_пароль";
     $hashedPasswordFromDatabase = "Хэшированный_пароль_из_базы_данных";
 
     if (password_verify($submittedPassword, $hashedPasswordFromDatabase)) {
         echo "Пароль верный";
     } else {
         echo "Пароль неверный";
-    }
+    }*/
 
 }
 

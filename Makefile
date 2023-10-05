@@ -38,3 +38,5 @@ app-php-cli-exec:
 composer-install:
 	$(MAKE) app-php-cli-exec cmd="composer dump-autoload"
 
+shell:
+	@docker-compose exec php-fpm /bin/bash
